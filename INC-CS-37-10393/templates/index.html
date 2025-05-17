@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lead Generator</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    color: #333333;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 32px; /* Increased size for impact */
+    margin-bottom: 30px;
+    font-weight: 900; /* Heaviest bold */
+    text-transform: uppercase; /* Makes it stand out */
+    letter-spacing: 1px; /* Adds spacing between letters */
+}
+
+form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1f2a38;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2e3d4f;
+}
+
+.error {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <h1 style="font-weight: bold;">Lead Spector</h1>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    <form method="POST">
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+        </div>
+        <div class="form-group">
+            <label for="industry">Industry:</label>
+            <input type="text" id="industry" name="industry" required>
+        </div>
+        <div class="form-group">
+            <label for="count">Number of Results:</label>
+            <input type="number" id="count" name="count" value=" " min="1">
+        </div>
+        <div class="form-group">
+            <label for="website_type">Website Type:</label>
+            <select id="website_type" name="website_type">
+                <option value="all">All Types</option>
+            </select>
+        </div>
+        <button type="submit">Generate Leads</button>
+    </form>
+</body>
+</html>

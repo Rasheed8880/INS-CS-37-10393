@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Search Results</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #333333;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .summary {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #cccccc;
+            font-size: 15px;
+        }
+
+        th {
+            background-color: #e0e7ef;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f0f4f8;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .download-btn {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .download-btn a {
+            background-color: #1f2a38;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn a:hover {
+            background-color: #2e3d4f;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #1f2a38;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            color: #2e3d4f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search Results</h1>
+
+    <p class="summary">
+        {{ count }} result{{ 's' if count != 1 else '' }} found for website type: 
+        <strong>{{ website_type }}</strong>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>Website Type</th>
+                <th>Emails Found</th>
+                <th>Active</th>
+                <th>Loads in ≤ 5s</th>
+                <th>Is Shopify</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td><a href="{{ result.url }}" target="_blank">{{ result.url }}</a></td>
+                <td>{{ result.type }}</td>
+                <td>{{ result.email_count }}</td>
+                <td>{{ result.active }}</td>
+                <td>{{ result.loads_in_5s }}</td>
+                <td>{{ result.is_shopify }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="download-btn">
+        <a href="{{ url_for('download_emails') }}">Download Emails CSV</a>
+    </div>
+
+    <div class="back-link">
+        <a href="{{ url_for('index') }}">← Go Back</a>
+    </div>
+
+</body>
+</html>
